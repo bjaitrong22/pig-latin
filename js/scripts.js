@@ -1,15 +1,19 @@
 function vowelAway (text) {
   let textArray = text.split(" ");
   const vowels = ["a","e","i","o","u"];
-  let newText = ""; 
-
-  if (vowels.indexOf(text[0]) > -1) {
-    newText = text + "way";
-    return newText;
-  } else  {
-    let firstMatch = text.match(vowels);
-    let vowel = text.indexOf(firstMatch[0]);
-    newText = text.substring(vowel) + text.subtring(0, vowel) + "way";
-    return newText;
-  }
+  let pigLatinWrd = []; 
+  
+  const pigVowelsArray = textArray.map ( function (text) {
+    if (vowels.indexOf(text[0]) > -1) {
+      pigLatinWrd = text + "way";
+      return pigLatinWrd;
+    } else  {
+      
+      const regex = new RegExp(/[aeiou]/gi);
+      indexOf1stVow = text.search(regex);
+      pigLatinWrd = text.slice(indexOf1stVow,) + text.slice(0,indexOf1stVow) + "ay";
+      return pigLatinWrd;
+    }
+});
+return pigVowelsArray;
 }
